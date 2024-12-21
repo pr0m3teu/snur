@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define DEFAULT_SIZE 128
 
@@ -12,8 +13,10 @@ typedef struct {
     int len;
     int count;
 
-} sb_builder;
+} String_Builder;
 
-bool sb_init_builder(sb_builder *sb);
+bool sb_init_builder(String_Builder* sb);
+void sb_append_char(String_Builder* sb, const char* c);
+
 
 #endif // STRING_BUILDER_H_

@@ -4,14 +4,13 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define DEFAULT_SIZE 128
 
 typedef struct {
     char *items;
     int len;
-    int count;
+    int size;
 
 } String_Builder;
 

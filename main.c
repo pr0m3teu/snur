@@ -15,7 +15,7 @@ int main(void)
     Snur_View sn = sn_build_snur(snur);
     printf("%s", sn.items);
     
-    sn_remove_null(&snur);
+    sn_pop_char(&snur);
     sn_append_cstr(&snur, "Hello again\n");
     sn_append_null(&snur);
 

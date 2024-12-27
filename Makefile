@@ -1,10 +1,10 @@
 CFLAGS=-Wall -Wextra -std=c11 -pedantic
+CC=gcc
+main: main.c snur.o
+	$(CC) -o main $(CFLAGS) main.c snur.o
 
-main: main.c string_builder.o
-	clang -o main $(CFLAGS) main.c string_builder.o
-
-string_builder.o: string_builder.h string_builder.c
-	clang -c $(CFLAGS) string_builder.c
+snur.o: snur.h snur.c
+	$(CC) -c $(CFLAGS) snur.c
 
 .PHONY: clean
 clean:

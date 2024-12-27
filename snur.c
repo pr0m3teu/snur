@@ -1,4 +1,4 @@
-#include "string_builder.h"
+#include "snur.h"
 
 bool sb_init_builder(String_Builder* sb)
 {
@@ -16,7 +16,7 @@ bool sb_init_builder(String_Builder* sb)
 
 static void resize(String_Builder* sb)
 {
-    sb->items = realloc(sb, sb->size*2);
+    sb->items = realloc(sb->items, sb->size*2);
     if (sb->items == NULL)
     {
         fprintf(stderr, "[ERRORR]: Could not allocate memory for 'String_Builder'\n");

@@ -1,8 +1,7 @@
-#ifndef STRING_BUILDER_H_
-#define STRING_BUILDER_H_
+#ifndef SNUR_H_ 
+#define SNUR_H_
 
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 #define DEFAULT_SIZE 128
@@ -12,15 +11,9 @@ typedef struct {
     int len;
     int size;
 
-} String_Builder;
+} Snur;
 
-typedef struct {
-    char* items;
-    int len;
-} String_View;
-
-bool sb_init_builder(String_Builder* sb);
-void sb_append_char(String_Builder* sb, const char* c);
-void sb_to_sv(String_Builder* sb, String_View* sv);
+bool sn_init(Snur* snur);
+void sn_append_char(Snur* snur, const char* c);
 
 #endif // STRING_BUILDER_H_

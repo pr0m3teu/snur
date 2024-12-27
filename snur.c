@@ -1,48 +1,39 @@
+#include <stdio.h>
 #include "snur.h"
 
-bool sb_init_builder(String_Builder* sb)
+bool sn_init(Snur* snur)
 {
-    sb->items = malloc(sizeof(char) * DEFAULT_SIZE);
-    if (sb->items == NULL)
+    snur->items = malloc(sizeof(char) * DEFAULT_SIZE);
+    if (snur->items == NULL)
     {
-        fprintf(stderr, "[ERROR]: Could not allocate memory for 'String_Builder'\n");
+        fprintf(stderr, "[ERROR]: Could not allocate memory for 'Snur'\n");
         return 1;
     }
 
-    sb->size = DEFAULT_SIZE;
-    sb->len = 0;
+    snur->size = DEFAULT_SIZE;
+    snur->len = 0;
     return 0;
 }
 
-static void resize(String_Builder* sb)
+static void sn_resize(Snur* snur)
 {
-    sb->items = realloc(sb->items, sb->size*2);
-    if (sb->items == NULL)
+    snur->items = realloc(snur->items, snur->size*2);
+    if (snur->items == NULL)
     {
-        fprintf(stderr, "[ERRORR]: Could not allocate memory for 'String_Builder'\n");
+        fprintf(stderr, "[ERRORR]: Could not allocate memory for 'Snur'\n");
         exit(1);
     }
-    sb->size = sb->size * 2;
+    snur->size = snur->size * 2;
 }
 
-void sb_append_char(String_Builder* sb, const char* c)
+void sn_append_char(Snur* snur, const char* c)
 {
-    if (sb->len == sb->size)
+    if (snur->len == snur->size)
     { 
-        resize(sb);
+        sn_resize(snur);
     }
-    sb->items[sb->len] = c[0];
-    sb->len++;
+    snur->items[snur->len] = c[0];
+    snur->len++;
 }
 
-void sb_to_sv(String_Builder* sb, String_View* sv)
-{
-    if (sb == NULL || sv == NULL) return;
-    sv->len = sb->len;
-    sv->items = malloc(sizeof(char) * sv->len);
-    for (int i = 0; i < sv->len; ++i)
-    {
-        sv->items[i] = sb->items[i];
-    }
-}
 

@@ -36,4 +36,36 @@ void sn_append_char(Snur* snur, const char* c)
     snur->len++;
 }
 
+void sn_append_many(Snur* snur, const char* str, size_t len)
+{
+    if (snur->len + len >= snur->size)
+    {
+        sn_resize(snur);
+    }
+
+    for (size_t i = 0; i < len; ++i)
+    {
+        snur->items[snur->len + i] = str[i];
+    }
+    snur->len += len;
+}
+
+void sn_append_cstr(Snur* snur, const char* cstr)
+{
+    size_t len = 0;
+    while (cstr[len] != '\0')
+    {
+        len++;
+    }
+
+    sn_append_many(snur, cstr, len);
+}
+
+void sn_append_null(Snur* snur)
+{
+    if (snur->len + 1 > snur->size) sn_resize(snur);
+
+    snur->items[snur->len++] = '\0';
+}
+
 

@@ -8,12 +8,14 @@
 
 typedef struct {
     char *items;
-    int len;
-    int size;
-
+    size_t len;
+    size_t size;
 } Snur;
 
 bool sn_init(Snur* snur);
 void sn_append_char(Snur* snur, const char* c);
+void sn_append_many(Snur* snur, const char* str, size_t len);
+void sn_append_cstr(Snur* snur, const char* cstr);
+void sn_append_null(Snur* snur);
 
 #endif // STRING_BUILDER_H_

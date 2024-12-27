@@ -68,4 +68,12 @@ void sn_append_null(Snur* snur)
     snur->items[snur->len++] = '\0';
 }
 
+void sn_remove_null(Snur* snur)
+{
+    if (snur->items[snur->len - 1] == '\0') snur->len--;
+}
 
+Snur_View sn_build_snur(Snur snur)
+{
+    return (Snur_View) { .items = snur.items, .len = snur.len }; 
+}

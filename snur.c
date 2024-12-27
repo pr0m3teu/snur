@@ -75,5 +75,13 @@ void sn_remove_null(Snur* snur)
 
 Snur_View sn_build_snur(Snur snur)
 {
-    return (Snur_View) { .items = snur.items, .len = snur.len }; 
+    Snur_View sn = {0};
+    sn.items = malloc(sizeof(char)*snur.len);
+    for (size_t i = 0; i < snur.len; i++)
+    {
+        sn.items[i] = snur.items[i];
+    }
+    sn.items[snur.len] = '\0';
+    sn.len = snur.len - 1;
+    return sn; 
 }

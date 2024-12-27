@@ -19,7 +19,10 @@ int main(void)
     sn_append_cstr(&snur, "Hello again\n");
     sn_append_null(&snur);
 
+    free(snur.items);
+    snur.items = NULL;
     printf("%s", sn.items);
 
+    free(sn.items);
     return 0;
 }

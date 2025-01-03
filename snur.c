@@ -1,15 +1,21 @@
 #include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "snur.h"
+
+static void check_ptr(void* ptr)
+{
+    if (ptr == NULL)
+    {
+        fprintf(stderr, "[ERROR]: Could not allocate memory\n");
+        exit(1);
+    }
+}
 
 void sn_init(Snur* snur)
 {
     snur->items = malloc(sizeof(char) * DEFAULT_SIZE);
-    if (snur->items == NULL)
-    {
-        fprintf(stderr, "[ERROR]: Could not allocate memory for 'Snur'\n");
-        exit(1);
-    }
+    check_ptr(snur->items);
 
     snur->size = DEFAULT_SIZE;
     snur->len = 0;
@@ -18,24 +24,17 @@ void sn_init(Snur* snur)
 void sn_from_cstr(Snur* snur, const char* cstr)
 {
     size_t len = strlen(cstr);
-   snur->items = malloc(sizeof(char) * len);
-   if (snur->items == NULL)
-   {
-       fprintf(stderr, "[ERROR]: Could not allocate memory for 'Snur'\n");
-       exit(1);
-   }
-   snur->len = len;
-   snur->size = len;
+    snur->items = malloc(sizeof(char) * len);
+    check_ptr(snur->items);
+
+    snur->len = len;
+    snur->size = len;
 }
 
 static void sn_resize(Snur* snur)
 {
     snur->items = realloc(snur->items, snur->size*2);
-    if (snur->items == NULL)
-    {
-        fprintf(stderr, "[ERRORR]: Could not allocate memory for 'Snur'\n");
-        exit(1);
-    }
+    check_ptr(snur->items);
     snur->size = snur->size * 2;
 }
 

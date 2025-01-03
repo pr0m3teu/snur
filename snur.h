@@ -1,9 +1,6 @@
 #ifndef SNUR_H_ 
 #define SNUR_H_
 
-#include <stdbool.h>
-#include <stdlib.h>
-
 #define DEFAULT_SIZE 128
 
 typedef struct {
